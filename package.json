@@ -1,0 +1,29 @@
+{
+  "name": "avr-sts-xai",
+  "version": "1.0.0",
+  "author": "Agent Voice Response <info@agentvoiceresponse.com>",
+  "description": "xAI Grok Voice Agent Speech-to-Speech service for Agent Voice Response",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "start:dev": "nodemon --inspect ./index.js",
+    "dc:build": "docker build --platform=linux/amd64 -t agentvoiceresponse/avr-sts-xai:latest -t agentvoiceresponse/avr-sts-xai:${npm_package_version} .",
+    "dc:push": "docker push agentvoiceresponse/avr-sts-xai:latest && docker push agentvoiceresponse/avr-sts-xai:${npm_package_version}"
+  },
+  "dependencies": {
+    "@alexanderolsen/libsamplerate-js": "^2.1.2",
+    "axios": "^1.13.2",
+    "dotenv": "^17.2.3",
+    "ws": "^8.19.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  },
+  "contributors": [
+    {
+      "name": "Giuseppe Careri",
+      "email": "info@gcareri.com",
+      "url": "https://github.com/gcareri"
+    }
+  ]
+}

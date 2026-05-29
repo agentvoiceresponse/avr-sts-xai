@@ -1,0 +1,35 @@
+name: Build Docker Image
+on:
+  push:
+    branches:
+      - main
+jobs:
+    build:
+      name: push docker image to docker hub
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+        - uses: actions/setup-node@v4
+          with:
+            node-version: "22"
+        - name: verify connector
+          run: |
+            npm ci
+            node --check index.js
+            node --check loadTools.js
+            node -e "delete process.env.XAI_API_KEY; try { require('./index.js'); process.exit(1); } catch (e) { if (!/XAI_API_KEY/.test(e.message)) throw e; }"
+        - name: login to docker hub
+          id: docker-hub
+          env:
+            username: ${{secrets.DOCKERHUB_USERNAME}}
+            password: ${{secrets.DOCKERHUB_PASSWORD}}
+          run: docker login -u $username -p $password
+        - name: get-npm-version
+          id: package-version
+          uses: martinbeentjes/npm-get-version-action@v1.3.1
+        - name: build the docker image
+          id: build-docker-image
+          run: docker build -t agentvoiceresponse/avr-sts-xai:latest -t agentvoiceresponse/avr-sts-xai:${{ steps.package-version.outputs.current-version}} .
+        - name: push the docker image
+          id: push-docker-image
+          run: docker push agentvoiceresponse/avr-sts-xai:latest && docker push agentvoiceresponse/avr-sts-xai:${{ steps.package-version.outputs.current-version}}
