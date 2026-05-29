@@ -95,6 +95,7 @@ docker run --env-file .env -p 6041:6041 agentvoiceresponse/avr-sts-xai:latest
 
 ## References
 
+- [Using xAI Grok Voice Agent STS with AVR](https://wiki.agentvoiceresponse.com/en/avr-sts-xai) — setup, Docker Compose, and AVR core wiring
 - [xAI Voice Agent API](https://docs.x.ai/developers/model-capabilities/audio/voice-agent)
 - [AVR STS integration guide](https://wiki.agentvoiceresponse.com/en/avr-sts-integration-implementation)
 
