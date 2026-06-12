@@ -46,6 +46,27 @@ const resolveVoice = () => {
   return XAI_VOICES.has(voice) ? voice : "eve";
 };
 
+const resolveWelcomeMessage = () => {
+  const raw = process.env.XAI_WELCOME_MESSAGE;
+  if (typeof raw !== "string") return null;
+  const trimmed = raw.trim();
+  return trimmed || null;
+};
+
+const sendWelcomeMessage = (ws, text) => {
+  ws.send(
+    JSON.stringify({
+      type: "conversation.item.create",
+      item: {
+        type: "force_message",
+        role: "assistant",
+        interruptible: false,
+        content: [{ type: "output_text", text }],
+      },
+    })
+  );
+};
+
 const buildTurnDetection = () => {
   const turnDetection = {
     type: (process.env.XAI_TURN_DETECTION || "server_vad").toLowerCase(),
@@ -347,7 +368,15 @@ const handleClientConnection = (clientWs) => {
 
           case "session.updated":
             console.log("Session updated");
-            ws.send(JSON.stringify({ type: "response.create" }));
+            {
+              const welcomeMessage = resolveWelcomeMessage();
+              if (welcomeMessage) {
+                console.log("Playing welcome message via force_message");
+                sendWelcomeMessage(ws, welcomeMessage);
+              } else {
+                ws.send(JSON.stringify({ type: "response.create" }));
+              }
+            }
             break;
 
           case "response.output_audio.delta":
