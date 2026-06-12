@@ -16,6 +16,7 @@ The connector exposes the standard AVR STS WebSocket protocol on port **6041** (
 - **Realtime STS**: Bidirectional audio via `wss://api.x.ai/v1/realtime`
 - **Grok voice models**: `grok-voice-latest`, `grok-voice-think-fast-1.0`, and versioned model names
 - **Built-in voices**: `eve`, `ara`, `rex`, `sal`, `leo`
+- **Welcome message**: Optional verbatim greeting via `XAI_WELCOME_MESSAGE` (xAI `force_message`)
 - **Barge-in**: Forwards `interruption` when user speech is detected
 - **Transcripts**: User and agent transcript events to AVR
 - **AVR tools**: `avr_transfer` and `avr_hangup` (plus custom tools in `tools/`)
@@ -36,6 +37,7 @@ XAI_API_KEY=your_xai_api_key
 | Variable | Default | Description |
 | --- | --- | --- |
 | `PORT` | `6041` | AVR-facing WebSocket port |
+| `XAI_WELCOME_MESSAGE` | — | Verbatim greeting played at session start via xAI `force_message` |
 | `XAI_MODEL` | `grok-voice-latest` | Voice model query parameter |
 | `XAI_VOICE` | `eve` | Agent voice (`eve`, `ara`, `rex`, `sal`, `leo`) |
 | `XAI_TURN_DETECTION` | `server_vad` | Turn detection mode |
