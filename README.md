@@ -101,6 +101,19 @@ docker run --env-file .env -p 6041:6041 agentvoiceresponse/avr-sts-xai:latest
 - [xAI Voice Agent API](https://docs.x.ai/developers/model-capabilities/audio/voice-agent)
 - [AVR STS integration guide](https://wiki.agentvoiceresponse.com/en/avr-sts-integration-implementation)
 
+## Support & Community
+
+*   **GitHub:** [https://github.com/agentvoiceresponse](https://github.com/agentvoiceresponse) - Report issues, contribute code.
+*   **Discord:** [https://discord.gg/DFTU69Hg74](https://discord.gg/DFTU69Hg74) - Join the community discussion.
+*   **Docker Hub:** [https://hub.docker.com/u/agentvoiceresponse](https://hub.docker.com/u/agentvoiceresponse) - Find Docker images.
+*   **Wiki:** [https://wiki.agentvoiceresponse.com/en/home](https://wiki.agentvoiceresponse.com/en/home) - Project documentation and guides.
+
+## Support AVR
+
+AVR is free and open-source. If you find it valuable, consider supporting its development:
+
+<a href="https://ko-fi.com/agentvoiceresponse" target="_blank"><img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="Support us on Ko-fi"></a>
+
 ## License
 
-MIT License — see [LICENSE](LICENSE.md).
+MIT License - see the [LICENSE](LICENSE.md) file for details.
